@@ -26,13 +26,13 @@
 					<div class="menu-icon">
 						<svg-icon name="picture" />
 					</div>
-					<div class="menu-name">图片</div>
+					<div class="menu-name">{{ $t('system.menu.图片') }}</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-icon">
 						<svg-icon name="setting" />
 					</div>
-					<div class="menu-name">设置</div>
+					<div class="menu-name">{{ $t('system.menu.设置') }}</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-icon">
