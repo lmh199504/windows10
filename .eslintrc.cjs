@@ -32,6 +32,14 @@ module.exports = {
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+		'vue/multi-word-component-names': [
+			'error',
+			{
+				ignores: ['index'],
+			},
+		],
+		'@typescript-eslint/no-explicit-any': 'off',
+		'@typescript-eslint/ban-types': 'off',
 		'prettier/prettier': [
 			'error',
 			{

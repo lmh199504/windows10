@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
+import StatusBar from '@/components/StatusBar/index.vue';
+import StartMenu from '@/components/StartMenu/index.vue';
+import { useSystemStore } from '@/store';
+import { storeToRefs } from 'pinia';
+const systemStore = useSystemStore();
+const { showStart } = storeToRefs(systemStore);
 </script>
 
 <template>
-	<div>
-		<a href="https://vitejs.dev" target="_blank">
-			<img src="/vite.svg" class="logo" alt="Vite logo" />
-		</a>
-		<a href="https://vuejs.org/" target="_blank">
-			<img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-		</a>
+	<div class="content">
+		<div class="desktop"></div>
+		<!-- 状态栏 -->
+		<StatusBar />
+		<!-- 开始菜单 -->
+		<StartMenu v-if="showStart" />
 	</div>
-	<HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-	filter: drop-shadow(0 0 2em #42b883aa);
+<style scoped lang="less">
+.content {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	// filter: brightness(0.5);
+	.desktop {
+		flex: 1;
+	}
 }
 </style>

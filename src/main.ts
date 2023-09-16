@@ -1,4 +1,12 @@
 import { createApp } from 'vue';
-import './style.css';
+import 'virtual:svg-icons-register';
+import '@/styles/theme.less';
+import '@/styles/style.less';
+import { createPinia } from 'pinia';
+
 import App from './App.vue';
-createApp(App).mount('#app');
+const app = createApp(App);
+
+app.use(createPinia());
+
+app.mount('#app');
