@@ -3,14 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Windows 10</title>
 </head>
 
 <body>
   <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
   <div id="power-on">
     <div class="logo">
       <img src="./public/windows.svg" alt="">
@@ -38,13 +37,16 @@
         display: flex;
         flex-direction: column;
       }
+
       #power-on .logo {
         display: flex;
         justify-content: center;
-        padding-top: 300px;
+        padding-top: 250px;
       }
+
       .loading {
-       flex: 1;
+        flex: 1;
+        position: relative;
       }
 
       .loading i {
@@ -358,14 +360,16 @@
           transform: rotate(880deg);
         }
       }
+
       .open-text {
         text-align: center;
         color: #fff;
         font-size: 24px;
-        padding-bottom: 30px;
+        padding-bottom: 100px;
       }
     </style>
   </div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

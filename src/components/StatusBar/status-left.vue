@@ -3,7 +3,10 @@ import { useSystemStore } from '@/store';
 import SvgIcon from '@/components/SvgIcon.vue';
 const store = useSystemStore();
 const handleClickStart = () => {
-	store.toggleWindowStart();
+	store.toggleKey('showStart');
+};
+const handleClickSearch = () => {
+	store.toggleKey('showSearch');
 };
 </script>
 <template>
@@ -11,7 +14,7 @@ const handleClickStart = () => {
 		<div class="icon window-icon" title="开始" @click="handleClickStart">
 			<SvgIcon name="Windows" />
 		</div>
-		<div class="icon" title="搜索">
+		<div class="icon" title="搜索" @click="handleClickSearch">
 			<SvgIcon name="sousuo" />
 		</div>
 		<div class="icon" title="任务视图">

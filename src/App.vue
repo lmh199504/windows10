@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import StatusBar from '@/components/StatusBar/index.vue';
 import StartMenu from '@/components/StartMenu/index.vue';
+import SearchMenu from '@/components/SearchMenu/index.vue';
 import { useSystemStore } from '@/store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import gsap from 'gsap';
 
 const systemStore = useSystemStore();
-const { showStart } = storeToRefs(systemStore);
+const { showStart, showSearch } = storeToRefs(systemStore);
 
 onMounted(() => {
 	// 去除开机动画
@@ -19,7 +20,7 @@ onMounted(() => {
 				document.querySelector('#power-on')?.remove();
 			},
 		});
-	}, 5000);
+	}, 2000);
 });
 </script>
 
@@ -27,9 +28,11 @@ onMounted(() => {
 	<div class="content">
 		<div class="desktop"></div>
 		<!-- 状态栏 -->
-		<StatusBar />
+		<status-bar />
 		<!-- 开始菜单 -->
-		<StartMenu v-if="showStart" />
+		<start-menu v-if="showStart" />
+		<!-- 搜索弹窗 -->
+		<search-menu v-if="showSearch" />
 	</div>
 </template>
 

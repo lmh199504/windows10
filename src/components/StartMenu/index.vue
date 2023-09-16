@@ -1,44 +1,106 @@
 <template>
-	<div class="start-menu" :style="style" ref="startMenu">菜单</div>
+	<div class="start-menu" :style="style" ref="dialogRef">
+		<div class="system-menu">
+			<div class="top-menu">
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="menu" />
+					</div>
+					<div class="menu-name">开始</div>
+				</div>
+			</div>
+			<div class="bottom-menu">
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="user" />
+					</div>
+					<div class="menu-name">{{ userStore.name }}</div>
+				</div>
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="doc" />
+					</div>
+					<div class="menu-name">文档</div>
+				</div>
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="picture" />
+					</div>
+					<div class="menu-name">图片</div>
+				</div>
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="setting" />
+					</div>
+					<div class="menu-name">设置</div>
+				</div>
+				<div class="menu-item">
+					<div class="menu-icon">
+						<svg-icon name="power" />
+					</div>
+					<div class="menu-name">电源</div>
+				</div>
+			</div>
+		</div>
+		<div class="scroll-menu"></div>
+		<div class="app-tag"></div>
+	</div>
 </template>
 <script setup lang="ts">
-import { onUnmounted, ref } from 'vue';
-import gsap from 'gsap';
-import { useSystemStore } from '@/store';
-import { storeToRefs } from 'pinia';
-import { computed, onMounted } from 'vue';
-const systemStore = useSystemStore();
-const { statusBarHeight } = storeToRefs(systemStore);
-const startMenu = ref<HTMLDivElement>();
+import SvgIcon from '../SvgIcon.vue';
+import useStatusMenuVisible from '@/hooks/useStatusMenuVisible';
+import { useUserStore } from '@/store';
+const userStore = useUserStore();
 
-const style = computed(() => {
-	return {
-		bottom: statusBarHeight.value + 'px',
-	};
-});
-
-const handleClick = (e: Event) => {
-	console.log(e.target);
-};
-onMounted(() => {
-	gsap.fromTo(
-		startMenu.value as object,
-		{ bottom: '-40px' },
-		{ bottom: statusBarHeight.value + 'px', duration: 0.2 }
-	);
-	document.addEventListener('click', handleClick);
-});
-onUnmounted(() => {
-	document.removeEventListener('click', handleClick);
-});
+const { style, dialogRef } = useStatusMenuVisible('showStart');
 </script>
 <style scoped lang="less">
 .start-menu {
+	user-select: none;
 	position: fixed;
 	left: 0;
 	min-height: 40vh;
 	background-color: var(--start-menu-bg);
 	min-width: 700px;
 	z-index: 9;
+	height: 500px;
+	color: var(--white);
+	overflow: hidden;
+	padding: 2px 0 0 0;
+	.system-menu {
+		width: 40px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		&:hover {
+			width: 250px;
+			box-shadow: -6px 0 10px 10px #353535;
+			transition: all 0.5s linear;
+			transition-delay: 0.5s;
+		}
+		.top-menu {
+			flex: 1;
+		}
+		.menu-item {
+			display: flex;
+			width: 250px;
+			&:hover {
+				background-color: #575757;
+			}
+			.menu-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 40px;
+				width: 40px;
+				font-size: 20px;
+			}
+			.menu-name {
+				line-height: 40px;
+			}
+		}
+	}
 }
 </style>

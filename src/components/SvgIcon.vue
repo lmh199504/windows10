@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
 	name: {
@@ -20,7 +20,6 @@ const props = defineProps({
 
 const iconName = computed(() => `#icon-${props.name}`);
 const svgClass = computed(() => {
-	// console.log(props.name, 'props.name');
 	if (props.name) {
 		return `svg-icon ${iconName.value}`;
 	}

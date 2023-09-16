@@ -7,4 +7,10 @@ export interface ISystem {
 	 * 状态栏高度
 	 */
 	statusBarHeight: number;
+	/**
+	 * 显示搜索框
+	 */
+	showSearch: boolean;
 }
+
+export type StatusMenuKey = keyof Pick<ISystem, 'showSearch' | 'showStart'>;
