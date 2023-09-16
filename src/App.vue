@@ -3,8 +3,24 @@ import StatusBar from '@/components/StatusBar/index.vue';
 import StartMenu from '@/components/StartMenu/index.vue';
 import { useSystemStore } from '@/store';
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+import gsap from 'gsap';
+
 const systemStore = useSystemStore();
 const { showStart } = storeToRefs(systemStore);
+
+onMounted(() => {
+	// 去除开机动画
+	setTimeout(() => {
+		gsap.to('#power-on', {
+			opacity: 0,
+			duration: 1,
+			onComplete: () => {
+				document.querySelector('#power-on')?.remove();
+			},
+		});
+	}, 5000);
+});
 </script>
 
 <template>
@@ -22,6 +38,7 @@ const { showStart } = storeToRefs(systemStore);
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+
 	// filter: brightness(0.5);
 	.desktop {
 		flex: 1;
