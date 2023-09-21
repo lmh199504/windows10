@@ -20,7 +20,7 @@
 					<div class="menu-icon">
 						<svg-icon name="doc" />
 					</div>
-					<div class="menu-name">文档</div>
+					<div class="menu-name">{{ $t('system.menu.文档') }}</div>
 				</div>
 				<div class="menu-item">
 					<div class="menu-icon">
@@ -34,25 +34,36 @@
 					</div>
 					<div class="menu-name">{{ $t('system.menu.设置') }}</div>
 				</div>
-				<div class="menu-item">
+				<div class="menu-item" @click="handlePower">
 					<div class="menu-icon">
 						<svg-icon name="power" />
 					</div>
-					<div class="menu-name">电源</div>
+					<div class="menu-name">{{ $t('system.menu.电源') }}</div>
 				</div>
 			</div>
 		</div>
 		<div class="scroll-menu"></div>
 		<div class="app-tag"></div>
+		<PowerMenu v-if="showPower" @hide="handleHide" />
 	</div>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue';
 import SvgIcon from '../SvgIcon.vue';
+import PowerMenu from './PowerMenu.vue';
 import useStatusMenuVisible from '@/hooks/useStatusMenuVisible';
 import { useUserStore } from '@/store';
 const userStore = useUserStore();
-
 const { style, dialogRef } = useStatusMenuVisible('showStart');
+const showPower = ref(false);
+const handlePower = () => {
+	showPower.value = true;
+};
+const handleHide = () => {
+	setTimeout(() => {
+		showPower.value = false;
+	});
+};
 </script>
 <style scoped lang="less">
 .start-menu {
@@ -76,7 +87,7 @@ const { style, dialogRef } = useStatusMenuVisible('showStart');
 		&:hover {
 			width: 250px;
 			box-shadow: -6px 0 10px 10px #353535;
-			transition: all 0.5s linear;
+			transition: all 0.3s linear;
 			transition-delay: 0.5s;
 		}
 		.top-menu {
