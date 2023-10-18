@@ -11,6 +11,10 @@ export interface ISystem {
 	 * 显示搜索框
 	 */
 	showSearch: boolean;
+	/**
+	 * 背景图
+	 */
+	bgImg: string;
 }
 
 export type StatusMenuKey = keyof Pick<ISystem, 'showSearch' | 'showStart'>;
